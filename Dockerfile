@@ -1,5 +1,8 @@
 # Этап 1: Сборка приложения
-FROM openjdk:17-jdk-slim as build
+FROM openjdk:23-oraclelinux8 as build
+
+# Устанавливаем необходимые инструменты
+RUN yum install -y findutils
 
 # рабочая директория для сборки
 WORKDIR /app
@@ -15,6 +18,8 @@ COPY settings.gradle .
 # копируем исходный код приложения
 COPY src src
 
+RUN sed -i 's/\r$//' ./gradlew
+
 # Предварительная загрузка зависимостей для кеширования слоев
 RUN ./gradlew dependencies
 
@@ -22,7 +27,7 @@ RUN ./gradlew dependencies
 RUN ./gradlew build -x test
 
 # Этап 2: Запуск собранного приложения
-FROM openjdk:17-jre-slim
+FROM openjdk:23-oraclelinux8
 
 # Копируем собранный jar файл из предыдущего этапа
 COPY --from=build /app/build/libs/*.jar app.jar

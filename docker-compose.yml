@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: your-spring-boot-app-image
+    image: currency-converter-app
     build:
       context: .
       dockerfile: Dockerfile

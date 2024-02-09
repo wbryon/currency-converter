@@ -1,8 +1,3 @@
-#spring.datasource.url=jdbc:postgresql://postgres:5432/currency_db
-#spring.datasource.username=admin
-#spring.datasource.password=password
-#spring.jpa.hibernate.ddl-auto=update
-
 spring:
   datasource:
     driver-class-name: ${DATABASE_DRIVER:org.postgresql.Driver}
