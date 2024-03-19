@@ -46,7 +46,7 @@ public class CurrencyService {
     }
 
 
-    private CurrencyRates getCurrencyRates(String baseCurrency) {
+    public CurrencyRates getCurrencyRates(String baseCurrency) {
         String currencyApiUrl = String
                 .format("%s/latest?api_key=3UsccLxLgZZIvWHXaZPGMvjWUKljt3P0&base=%s", apiUrl, baseCurrency.toUpperCase());
         return restTemplate.getForObject(currencyApiUrl, CurrencyRates.class);
