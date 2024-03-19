@@ -15,22 +15,10 @@ public class CurrencyController {
         this.currencyService = currencyService;
     }
 
-//    @GetMapping("/list/{base}")
-//    public Map<String, Double> getCurrencyList(@PathVariable String base) {
-//        return currencyService.getCurrencyList(base);
-//    }
-
     @GetMapping("/list/{base}")
     public Mono<Map<String, Double>> getCurrencyList(@PathVariable String base) {
         return currencyService.getCurrencyListMono(base);
     }
-
-//    @GetMapping("/convert")
-//    public Double convertCurrency(@RequestParam String from,
-//                                  @RequestParam String to,
-//                                  @RequestParam Double amount) {
-//        return currencyService.convertCurrency(from, to, amount);
-//    }
 
     @GetMapping("/convert")
     public Mono<Double> convertCurrencyMono(@RequestParam String from,
